@@ -1,0 +1,149 @@
+@import '@fontsource-variable/albert-sans';
+@import 'tailwindcss';
+
+/*
+  LATS palette — carried over from the existing site: black, white and the deep forest green on its
+  call button (rgb 43,83,54). Paper is a warm off-white so black stays rich instead of fighting a cold screen white.
+*/
+@theme {
+  --font-sans: 'Albert Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0d0f0d;
+  --color-ink-2: #161916;
+  --color-coal: #1f231f;
+  --color-paper: #f5f4f0;
+  --color-paper-2: #ebe9e2;
+  --color-chalk: #ffffff;
+  --color-green: #2b5336;
+  --color-green-600: #35663f;
+  --color-green-deep: #14251a;
+  --color-green-50: #e8efe9;
+  --color-sage: #8fb59b;
+  --color-mist: #c4dccb;
+  --color-smoke: #a4a9a2;
+  --color-graphite: #5b5f59;
+
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-green);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+  button {
+    cursor: pointer;
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+/* type scale: light-medium weight, big, tight — sentence case throughout */
+@utility t-hero {
+  font-weight: 500;
+  font-size: clamp(3.4rem, 9.6vw, 9.8rem);
+  line-height: 0.93;
+  letter-spacing: -0.055em;
+}
+@utility t-h1 {
+  font-weight: 500;
+  font-size: clamp(3rem, 7.6vw, 7.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.052em;
+}
+@utility t-h2 {
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5vw, 4.7rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+@utility t-h3 {
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+/* small lead-in above a heading: a green dot and a plain-spoken label */
+@utility kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  &::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--kicker-dot, var(--color-green));
+    flex-shrink: 0;
+  }
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 94rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
